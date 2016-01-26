@@ -1,0 +1,23 @@
+<dom-module id="video-list">
+  <template>
+    <template is="dom-repeat" items="[[videos]]">
+        <video-player title="[[item.title]]" yid="[[item.yid]]" index="[[index]]"></video-player>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'video-list',
+      ready: function() {
+        this.videos = [
+            {title: 'Poland Is Beautiful', yid: 'Qbu_FRg8vuU'},
+            {title: 'Drone first flight', yid: 'Ep10Ygi6Xw8'},
+            {title: 'Drone flight over Chrzanów IV', yid: '68YTFdfursE'},
+            {title: 'Aqua Lublin', yid: 'ClosUqNobS8'},
+            {title: 'Pobiegówki Na Zalewy', yid: 'jtJ6K_KJip4'}
+        ];
+      }
+    });
+  </script>
+
+</dom-module>
