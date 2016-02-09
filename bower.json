@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "polymer": "~1.2.3",
-    "bootstrap": "~3.3.6"
+    "bootstrap": "~3.3.6",
+    "async-gist": "~1.0.1"
   }
 }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hello OpenGL</title>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="common.css">
+        <link rel="import" href="bower_components/polymer/polymer.html">
+        <link rel="import" href="components/static-navbar.html">
+        <link rel="import" href="components/awesome-panel.html">
+        <link rel="import" href="components/awesome-quote.html">
+    </head>
+    <body class="bg-warning">    
+        <div class="container">
+            <div class="page-header">
+                <h1>OpenGL workbook | <small><a href="https://github.com/ladrower/OpenGLing">code source</a></small></h1>
+            </div>
+            <awesome-panel 
+                awesome-title="Obiekt programu, konsolidacja, walidacja i wykonanie programu" 
+                awesome-note="pages 42-43 of <a target='_blank' href='http://www.amazon.fr/OpenGL-Podstawy-programowania-grafiki-3D/dp/8328301938'>OpenGL. Podstawy programowania grafiki 3D</a>">
+           
+                <p>
+                    Obiekt programu zawiera wszystkie informacje niezbedne do umieszenia zbioru jednego 
+                    lub wiekszej liczby obiektow shaderow w programowalnej czesci potoku renderingu OpenGL
+                </p>
+                <p>
+                    Obiekt programu tworzy wywolanie funkcji 
+                </p>
+                <awesome-quote>
+                    GLuint glCreateProgram( void );
+                </awesome-quote>
+
+                <p>
+                    Obiekt programu moze byc usunienty przy uzyciu funkcji
+                </p>
+                <awesome-quote>
+                    void glDeleteProgram( GLuint program );
+                </awesome-quote>
+
+                <p>
+                    Dolaczenie obiektu shadera do obiektu programu wymaga uzycia funkcji
+                </p>
+                <awesome-quote>
+                    void glAttachShader( GLuint program, GLuint shader );
+                </awesome-quote>
+                <p>
+                    Mozliwe jest dolaczenie wielu obiektow shaders obslugujachych programy
+                    cieniowania tego samego typu (np. shaderow wierzcholkow) do jednego obiektu programu, <br>
+                    a ponadto jeden obiekt shadera moze byc dolaczony do wiecej niz jednego obiektu programu.
+                </p>
+
+                <p>
+                    Aby odlaczyc obiekt shaders z oobiektu programu, nalezy uzyc funkcji
+                </p>
+                <awesome-quote>
+                    void glDetachShader( GLuint program, GLuint shader );
+                </awesome-quote>
+
+                <p>
+                    Po dolaczeniu wybranych obiektow shaders nalezy dokonac konsolidacji obiektu programu, ktora realizuje funkcja
+                </p>
+                <awesome-quote>
+                    void glLinkProgram( GLuint program );
+                </awesome-quote>
+
+                <p>
+                    Wynik procesu konsolidacji przechowywany jest w zmiennej stanu obiektu programu <b>GL_LINK_STATUS</b><br>
+                    Wartosc tej zmiennej mozna odczytac, korzystajac z opisanej dalej funkcji <b>glGetProgramiv</b>
+                </p>
+
+                <p>
+                    Opcjonalnym etapem przetwarzania obiektu programu jest sprawdzenie jego poprawnosci przy uzyciu funkcji
+                </p>
+                <awesome-quote>
+                    void glValidateProgram( GLuint program );
+                </awesome-quote>
+
+                <p>
+                    ktorej parametr <i>program</i> zawiera identyfikator weryfikowanego obiektu programu.<br>
+                    Wynik sprawdzania zawiera zmienna stanu obiektu programu <b>GL_VALIDATE_STATUS</b>, 
+                    ktora moze byc pobrana przy uzyciu funkcji <b>glGetProgramiv</b> 
+                </p>
+
+                <p>
+                    Gdy obiekt programu zostal pomyslnie skonsolidowany i opcjonalne zweryfikowany, moze sie on stac czescia biezacego potoku renderingu poprzez wywolanie funkcji
+                </p>
+                <awesome-quote>
+                    void glUseProgram( GLuint program );
+                </awesome-quote>
+                <p>
+                    ktorej parametr <i>program</i> jest identyfikatorem obiektu programu.<br>
+                    Podanie wartosci <i>0</i> spowoduje wylaczenie biezacego obiektu programu z potoku renderingu.
+                </p>
+
+                <div data-gist="ladrower/de703096458249766340"></div>
+                
+            </awesome-panel>
+        </div>
+        <static-navbar></static-navbar>
+    </body>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/async-gist/gist.min.js"></script>
+    <script type="text/javascript">
+        $('[data-gist]').gist();     
+    </script>
+</html>
